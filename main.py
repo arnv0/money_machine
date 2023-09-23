@@ -4,6 +4,10 @@ from utils import *
 from breeze_connect import BreezeConnect
 import datetime
 
+secrets = load_config('secrets.cfg')
+API_KEY = secrets['API_KEY']
+SECRET_KEY = secrets['SECRET_KEY']
+API_SESSION = secrets['API_SESSION']
 
 
 if __name__ == '__main__':
