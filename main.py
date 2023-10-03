@@ -3,6 +3,8 @@
 from utils import *
 from breeze_connect import BreezeConnect
 import datetime
+import yfinance as yf
+import pandas as pd
 
 secrets = load_config('secrets.cfg')
 API_KEY = secrets['API_KEY']
@@ -51,29 +53,3 @@ if __name__ == '__main__':
         right="",
         get_exchange_quotes=True,
         get_market_depth=False)
-
-    def histDataFetcher(from_date,interval, ticker,exchange):
-        intervals_dict = {"1second":1,"1minute":60,"5minute":300,"30minute":1800,"1day":86400}
-        MAX_CANDLES = 1000
-        now = datetime.datetime.now()
-        fromDateObj = convDate_str2obj(from_date)
-        candlesToGet = (now-fromDateObj).total_seconds() // intervals_dict[interval]
-        flag = 0
-        final_results = []
-        while candlesToGet > 0:
-            result = breeze.get_historical_data_v2(interval=interval,
-            from_date = convDate_obj2iso8601(fromDateObj),
-            to_date = convDate_obj2iso8601(now),
-            stock_code = "NIFTY",
-            exchange_code = "NSE",
-            product_type = "",
-            expiry_date = "",
-            right = "",
-            strike_price = "")
-            if len(result['Success']) == 0:
-                print('0 candles was returned!')
-                return None
-            candlesToGet -= len(result['Success'])
-            fromDateObj += datetime.timedelta(seconds=1000*intervals_dict[interval])
-            final_results += result['Success']
-        return final_results
