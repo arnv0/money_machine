@@ -1,5 +1,0 @@
-def convDateBrz_str2obj(input_date):
-    return datetime.datetime.strptime(input_date, "%d:%m:%Y:%H:%M:%S")
-
-def convDateBrz_obj2iso8601(input_date):
-    return (input_date - datetime.timedelta(hours=5, minutes=30)).strftime("%Y-%m-%dT%H:%M:%S") + '.000Z'

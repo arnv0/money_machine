@@ -6,6 +6,7 @@ import datetime
 import yfinance as yf
 import pandas as pd
 
+
 secrets = load_config('secrets.cfg')
 API_KEY = secrets['API_KEY']
 SECRET_KEY = secrets['SECRET_KEY']
